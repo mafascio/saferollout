@@ -6,7 +6,7 @@ ENDPOINT_FILE=endpoint/endpoint.yml
 DEPLOYMENT_FILE=endpoint/deployment.yml
 
 # create endpoint if it does not exist
-ENDPOINT_EXISTS=$(az ml online-endpoint list -o tsv --query "[?name=='$ENDPOINT_NAME'][name]" |  wc -l)
+ENDPOINT_EXISTS=$(az ml online-endpoint list -o tsv --version 1 --query "[?name=='$ENDPOINT_NAME'][name]" |  wc -l)
 if [[ ENDPOINT_EXISTS -ne 1 ]]; then
     az ml online-endpoint create -n $ENDPOINT_NAME -f $ENDPOINT_FILE      
 else
